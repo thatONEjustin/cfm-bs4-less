@@ -1,6 +1,2 @@
-# Mac.
-.DS_STORE
-
-# Node.
-node_modules/
-npm-debug.log
+.gitignore
+node_modules
