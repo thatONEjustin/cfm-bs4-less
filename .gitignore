@@ -1,3 +1,2 @@
 .gitignore
 node_modules
-node_modules/grunt-contrib-copy/node_modules/chalk/index.js
