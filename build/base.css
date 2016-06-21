@@ -1,34 +1,9 @@
-/************ 
-this is where all base stuff goes , ie layouts, buttons, forms, etc
-place your custom code in custom.css
-*************/
 
-
-/* colors 
-    blue            629dcc
-    dk blue         1a3e5c
-    green(accent)   90f5b7
-    grey(bg)        f3f4f5
-    wht             f4f8fc
-    text            1d252c           
-*/
-
-
-/* fonts 
-    font-family: "proxima-nova", "helvetica", "arial", sans-serif;
-    weights: 300, 400, 700
-
-    font-family: "proxima-nova-alt-condensed", "helvetica", "arial", sans-serif;
-    weights: 300, 400, 700
-*/
-
-
-/******
-loading */
-
-
-/******
-layout */
+/*
+ *
+ * EVERY BIT OF THIS FILES IS DEPRECATED
+ *
+ * * * * * * * * * */ 
 
 body,
 html {
