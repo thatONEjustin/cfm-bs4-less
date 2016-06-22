@@ -1,4 +1,12 @@
-<!--- base navigation - switches to off canvas on mobile --->
+
+<!--
+    BASE NAVIGATION
+
+    TODO: Normalize the c-menu CSS/JS/HTML
+    
+    MESSAGE: We need to make the file structure extensible for all /themes/
+
+-->
 <nav id="c-menu--push-right" class="c-menu c-menu--push-right">
     <div class="container">
         <a class="nav-logo hidden-md-down" href="#">
