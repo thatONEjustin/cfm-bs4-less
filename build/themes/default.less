@@ -7,10 +7,7 @@
 
 body,
 html {
-    font-family: "proxima-nova", "helvetica", "arial", sans-serif;
-    background: #e1e1e1;
     font-size: 18px;
-    color: #1d252c;
 }
 
 body {
@@ -24,9 +21,10 @@ body {
     float: left;
     -webkit-transition: -webkit-transform 0.3s;
     transition: transform 0.3s;
+    
+    /* TODO: WHAT IS THIS FOR? */
     padding-bottom: 280px;
 }
-
 
 .content {
     position: relative;
@@ -50,8 +48,6 @@ nav {
     left: 0;
     right: 0;
     z-index: 998;
-    
-    font-family: "proxima-nova-alt-condensed", "helvetica", "arial", sans-serif;
     
     .container {
         position: relative;
@@ -125,64 +121,6 @@ dropdown */
     }
     
 }
-
-@media (max-width: 767px) {
-    .navbar-nav {
-        display: inline;
-    }
-    .navbar-default .navbar-brand {
-        display: inline;
-    }
-    .navbar-default .navbar-toggle .icon-bar {
-        background-color: #fff;
-    }
-    .navbar-default .navbar-nav .dropdown-menu > li > a {
-        color: red;
-        background-color: #ccc;
-        border-radius: 4px;
-        margin-top: 2px;
-    }
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
-        color: #333;
-    }
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
-        background-color: #ccc;
-    }
-    ul.nav li.open > ul.dropdown-menu {
-        /* display: block;*/
-        height: auto;
-        max-height: 100vh;
-    }
-    .navbar-nav .open .dropdown-menu {
-        border-bottom: 1px solid white;
-        border-radius: 0;
-    }
-    .dropdown-menu {
-        padding-left: 10px;
-    }
-    .dropdown-menu .dropdown-menu {
-        padding-left: 20px;
-    }
-    .dropdown-menu .dropdown-menu .dropdown-menu {
-        padding-left: 30px;
-    }
-    li.dropdown.open {
-        border: 0px solid red;
-    }
-}
-
-@media (min-width: 768px) {
-    ul.nav li:hover > ul.dropdown-menu {
-        /* display: block;*/
-        height: auto;
-        max-height: 100vh;
-    }
-    #navbar {
-        text-align: center;
-    }
-}
-
 
 /******
 mega menu */
@@ -297,8 +235,6 @@ footer {
  * CUSTOM BASIC PAGE STYLES
  *
  * * * * * * * * * */ 
-
-
 
 .hero {
     position: relative;
@@ -508,6 +444,76 @@ base responsive - only use for spacing and menu  */
 /* custom menu things */
 
 @media screen and (max-width: 48em) {
+    
+    
+    .navbar-nav {
+        display: inline;
+        
+        .open .dropdown-menu {
+            border-bottom: 1px solid white;
+            border-radius: 0;
+        }
+    }
+    
+    .navbar-default {
+        .navbar-brand {
+            display: inline;
+        }
+        
+        .navbar-toggle .icon-bar {
+            background-color: #fff;
+        }
+        
+        .navbar-nav {
+            .dropdown-menu > li > a {
+                color: red;
+                background-color: #ccc;
+                border-radius: 4px;
+                margin-top: 2px;
+            }
+            
+            .open .dropdown-menu > li > a {
+                color: #333;
+                
+                &:hover, &:focus {
+                    background-color: #ccc;
+                }
+            }
+        }
+    }
+    
+    
+    ul.nav li.open > ul.dropdown-menu {
+        /* display: block;*/
+        height: auto;
+        max-height: 100vh;
+    }
+    
+    .dropdown-menu {
+        padding-left: 10px;
+        .dropdown-menu {
+            padding-left: 20px;
+        }
+        
+         .dropdown-menu {
+            padding-left: 30px;
+        }
+    }
+    
+    li.dropdown.open {
+        border: 0px solid red;
+    }
+    
+    ul.nav li:hover > ul.dropdown-menu {
+        /* display: block;*/
+        height: auto;
+        max-height: 100vh;
+    }
+    
+    #navbar {
+        text-align: center;
+    }
+    
     /* mobile */
     .mobile {
         background: #333;
@@ -653,13 +659,3 @@ base responsive - only use for spacing and menu  */
         transform: translateX(-300px);
     }
 }
-
-
-/* end menu styles */
-
-
-/*
- *
- * EVERY BIT OF THIS FILES IS DEPRECATED
- *
- * * * * * * * * * */ 
