@@ -25,15 +25,19 @@ module.exports = function (grunt) {
             }, 
             
             themes: {
-              files: ['build/themes/**.less'],
-              tasks: ['less:theme', 'cssmin:themes']
+                files: ['build/themes/**.less'],
+                tasks: ['less:theme', 'cssmin:themes'],
+                options: {
+                    spawn: false
+                }
             },
             
             //Watch the .cfm files in /build/ 
             copyStructure: {
                 files: 'build/**.cfm',
                 tasks: ['copy:cfm']                
-            }
+            }           
+            
         },
         
         copy: {
@@ -95,14 +99,6 @@ module.exports = function (grunt) {
         }
     });        
 
-    /*grunt.event.on('watch', function(action, filepath) {
-        grunt.config('less:main', filepath);
-        grunt.config('less:theme', filepath);
-        grunt.config('cssmin:userCSS', filepath);
-        grunt.config('cssmin:themes', filepath);
-        grunt.config('copy:cfm', filepath);
-    });*/
-    
     // Load plugins
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
@@ -116,8 +112,12 @@ module.exports = function (grunt) {
     // bbuild is my basic build script for distribution
     grunt.registerTask('bbuild', ['less', 'copy:basic', 'cssmin']);
         
+    /*
     grunt.event.on('watch', function(action, filepath, target) {
-        grunt.log.writeln('test')
-        grunt.log.writeln(target + ': ' + filepath + ' has ' + action);
+        
+        grunt.config(['less', 'theme', 'files', 'src'], [filepath]);
+        
     });
+    */
+    
 }
