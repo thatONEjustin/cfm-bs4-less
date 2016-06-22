@@ -193,9 +193,15 @@
 
         </div><!--- / site --->
 
-        <div id="mask" class="mask"></div>
+        <div id="mask" class="mask"></div><!--- / site mask for push menu --->
 
         <cfinclude template="./inc.javascript.cfm" />
+        
+        <script>
+            $(document).ready(function() {
+                //Least favorite way to do this
+            });
+        </script>
 
     </body>
 
