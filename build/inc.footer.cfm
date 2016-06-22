@@ -1,5 +1,6 @@
 <footer class="footer">
 
+    <!--- This is just example code for expanded footers. --->
     <!---
     <div class="footer">
         <div class="container">
