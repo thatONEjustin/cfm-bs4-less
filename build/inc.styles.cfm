@@ -1,5 +1,5 @@
 <!-- PLUGINS -->
-<link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" type="text/css" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <link rel="stylesheet" type="text/css" href="assets/plugins/slick.css"/>
 
 <!--
@@ -12,7 +12,9 @@
     WARN: For now we will not minify base.css, I want to use base.css to contain the simple CSS example defintions provided by bootstrap themselves
 -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/theme/default/base.css" rel="stylesheet"> 
+
+<!-- Base theme -->
+<link href="themes/default.min.css" rel="stylesheet"> 
 
 <!-- MAIN SITE STYLES -->
 <link href="styles.min.css" rel="stylesheet">
