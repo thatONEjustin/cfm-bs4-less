@@ -11,7 +11,30 @@
 
 module.exports = function (grunt) {
 
-    grunt.initConfig({
+    grunt.initConfig({        
+        /*
+         * 
+         * TODO: Refer to https://github.com/gruntjs/grunt-contrib-watch/issues/65 RE: watching only changed files. We will need to relook at how the task is handled; 
+         *
+         */ 
+        watch: {
+            //Watch the .less files in /build/
+            styles: {
+                files: ['build/**.less'],
+                tasks: ['less:main', 'cssmin:userCSS']
+            }, 
+            
+            themes: {
+              files: ['build/themes/**.less'],
+              tasks: ['less:theme', 'cssmin:themes']
+            },
+            
+            //Watch the .cfm files in /build/ 
+            copyStructure: {
+                files: 'build/**.cfm',
+                tasks: ['copy:cfm']                
+            }
+        },
         
         copy: {
             basic: {
@@ -22,19 +45,24 @@ module.exports = function (grunt) {
             },
             
             cfm: {
-                expand: true,
-                cwd: 'build',
-                src: ['**.cfm', '*.*.cfm', '!**.less', '!**/*.less' , '!*.old.*'],
-                dest: 'dist/'
+                files: [{
+                    expand: true,
+                    cwd: 'build',
+                    src: ['**.cfm', '*.*.cfm', '!**.less', '!**/*.less' , '!*.old.*'],
+                    dest: 'dist/'
+                }]                
             }
         }, 
         
         less: {
             main: {
-                files: {
-                    'dist/styles.css': 'build/styles.less',
-                    'dist/responsive.css': 'build/responsive.less'
-                }
+                files: [{
+                    expand: true,
+                    cwd: 'build',
+                    src: ['*.less', '!**.old.*', '!{boot,var,mix}*.less'],
+                    dest: 'dist',
+                    ext: '.css'
+                }]   
             },
             
             theme: {
@@ -64,29 +92,17 @@ module.exports = function (grunt) {
                 dest: 'dist/themes',
                 ext: '.min.css'
             }
-        },
-        
-        watch: {
-            //Watch the .less files in /build/
-            styles: {
-                files: ['build/**.less'],
-                tasks: ['less:main', 'cssmin:userCSS']
-            }, 
-            
-            themes: {
-              files: ['build/themes/**.less'],
-              tasks: ['less:theme', 'cssmin:themes']
-            },
-            
-            //Watch the .cfm files in /build/ 
-            copyStructure: {
-                files: 'build/**.cfm',
-                tasks: ['copy:cfm']                
-            }
         }
-    });
-        
+    });        
 
+    /*grunt.event.on('watch', function(action, filepath) {
+        grunt.config('less:main', filepath);
+        grunt.config('less:theme', filepath);
+        grunt.config('cssmin:userCSS', filepath);
+        grunt.config('cssmin:themes', filepath);
+        grunt.config('copy:cfm', filepath);
+    });*/
+    
     // Load plugins
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
@@ -94,10 +110,14 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
 
     // Task(s)
-    // Default task is to watch the directories. 
+    // Default task is to watch the directories.     
     grunt.registerTask('default', ['watch']);    
     
     // bbuild is my basic build script for distribution
     grunt.registerTask('bbuild', ['less', 'copy:basic', 'cssmin']);
-    
+        
+    grunt.event.on('watch', function(action, filepath, target) {
+        grunt.log.writeln('test')
+        grunt.log.writeln(target + ': ' + filepath + ' has ' + action);
+    });
 }
