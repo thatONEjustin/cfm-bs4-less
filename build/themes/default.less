@@ -937,12 +937,70 @@ navigation */
 
 nav {
     color: #fff;
-}
+    
+    .scrolled {
+        background: #b28c47;
+    }
+    
+     .nav-logo {
+        height: 70px;
+        width: 250px;
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        margin-top: -35px;
+    }
+    
+    .navbar-nav {
+        padding: 0.75rem 0 0.75rem 2rem;
+        position: relative;
+        float: left;
+        /*width: 100%;
+        z-index: 1;*/
 
-nav.scrolled {
-    background: #b28c47;
-}
+        .nav-link {
+            letter-spacing: 0.05rem;
+            margin-top: 20px;
+            line-height: 20px;
+            font-size: 0.95rem;
+            padding: 0 0.25rem;
+            position: relative;
 
+            &:hover {
+                color: #f8edd9;
+
+                &:after {
+                    opacity: 1;
+                    width: 100%;
+                }
+            }
+
+            &:after {
+                content: '';
+                position: absolute;
+                bottom: -3px;
+                left: 50%;
+                width: 0;
+                height: 1px;
+                background: #f8edd9;
+                opacity: 0;
+                border: 0;
+                -moz-transform: translateX(-50%);
+                -webkit-transform: translateX(-50%);
+                -o-transform: translateX(-50%);
+                -ms-transform: translateX(-50%);
+                transform: translateX(-50%);
+                -webkit-transition: all 0.25s ease-in-out;
+                -moz-transition: all 0.25s ease-in-out;
+                -ms-transition: all 0.25s ease-in-out;
+                -o-transition: all 0.25s ease-in-out;
+                transition: all 0.25s ease-in-out;
+            }
+        }
+
+    }
+}
+/*
 nav .nav-logo {
 	height: 70px;
 	width: 250px;
@@ -951,15 +1009,54 @@ nav .nav-logo {
     top: 50%;
     margin-top: -35px;
 }
-
 nav .navbar-nav {
     padding: 0.75rem 0 0.75rem 2rem;
     position: relative;
     float: left;
-    /*width: 100%;
-    z-index: 1;*/
+    /width: 100%;
+    z-index: 1;/
+    
+    .nav-link {
+        letter-spacing: 0.05rem;
+        margin-top: 20px;
+        line-height: 20px;
+        font-size: 0.95rem;
+        padding: 0 0.25rem;
+        position: relative;
+        
+        &:hover {
+            color: #f8edd9;
+            
+            &:after {
+                opacity: 1;
+                width: 100%;
+            }
+        }
+        
+        &:after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 50%;
+            width: 0;
+            height: 1px;
+            background: #f8edd9;
+            opacity: 0;
+            border: 0;
+            -moz-transform: translateX(-50%);
+            -webkit-transform: translateX(-50%);
+            -o-transform: translateX(-50%);
+            -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
+            -webkit-transition: all 0.25s ease-in-out;
+            -moz-transition: all 0.25s ease-in-out;
+            -ms-transition: all 0.25s ease-in-out;
+            -o-transition: all 0.25s ease-in-out;
+            transition: all 0.25s ease-in-out;
+        }
+    }
+    
 }
-/*
 nav .navbar-nav:after {
     content: '';
     background: #1a3a53;
@@ -976,7 +1073,7 @@ nav .navbar-nav:after {
     animation-timing-function: ease-in;
     animation-fill-mode: both;
     animation-delay: 0.5s;
-}*/
+}
 
 nav .navbar-nav .nav-link {
     letter-spacing: 0.05rem;
@@ -1017,25 +1114,27 @@ nav .navbar-nav .nav-link:hover:after {
     opacity: 1;
     width: 100%;
 }
+*/
 
-
-/******
+/****** 
 footer */
-.footer .linkedin {
-    float: right;
-    width: 30px;
-    height: 30px;
-    display: block;
-    background: rgba(255,255,255,0.2);
-    border-radius: 50%;
-    text-align: center;
-    line-height: 30px;
-    color: #1a3a53;
-    margin-top: 15px;
-}
-
-.footer .linkedin:hover {
-    background: rgba(255,255,255,0.8);
+.footer {
+    .linkedin {
+        float: right;
+        width: 30px;
+        height: 30px;
+        display: block;
+        background: rgba(255,255,255,0.2);
+        border-radius: 50%;
+        text-align: center;
+        line-height: 30px;
+        color: #1a3a53;
+        margin-top: 15px;
+        
+        &:hover {
+            background: rgba(255,255,255,0.8);
+        }
+    }
 }
 
 
