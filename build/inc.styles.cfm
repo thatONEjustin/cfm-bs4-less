@@ -6,8 +6,8 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Base theme -->
-<link href="themes/default.min.css" rel="stylesheet"> 
+<link href="themes/default.css" rel="stylesheet"> 
 
 <!-- MAIN SITE STYLES -->
-<link href="styles.min.css" rel="stylesheet">
-<link href="responsive.min.css" rel="stylesheet">
+<link href="styles.css" rel="stylesheet">
+<link href="responsive.css" rel="stylesheet">
