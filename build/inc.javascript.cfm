@@ -31,26 +31,8 @@ pushRightBtn.addEventListener('click', function (e) {
 });	    
 
     
-// *** JUSTIN PLEASE TAKE A LOOK
-// *** need to figure out hover on large/desktop and click on small/mobile
-    
-// hover state
-/*
-if ($(window).width() > 992) {
-    // nav hover - act as click
-    $('.dropdown').hover(function(){ 
-      $('.dropdown-toggle', this).trigger('click'); 
-    });
-
-    // nav dropdown mega menu
-    jQuery(document).on('click', '.mega-dropdown', function(e) {
-      e.stopPropagation()
-    })
-}
-*/
-    
 if(mobileCheck()) {
-    //alert('mobile');
+    
     // nav hover - act as click
     $('.dropdown').hover(function(){ 
       $('.dropdown-toggle', this).trigger('click'); 
@@ -59,28 +41,16 @@ if(mobileCheck()) {
     // nav dropdown mega menu
     jQuery(document).on('click', '.mega-dropdown', function(e) {
       e.stopPropagation()
-    })
+    });
+    
 } else {
     //alert('desktop');
 }
     
 $(window).resize(function() {
-    /*
-    if ($(window).width() > 992) {
-        // nav hover - act as click
-        $('.dropdown').hover(function(){ 
-          $('.dropdown-toggle', this).trigger('click'); 
-        });
-
-        // nav dropdown mega menu
-        jQuery(document).on('click', '.mega-dropdown', function(e) {
-          e.stopPropagation()
-        })
-    }
-    */
-
+  
     if(mobileCheck()) {
-        //alert('mobile');
+        
         // nav hover - act as click
         $('.dropdown').hover(function(){ 
           $('.dropdown-toggle', this).trigger('click'); 
@@ -89,87 +59,74 @@ $(window).resize(function() {
         // nav dropdown mega menu
         jQuery(document).on('click', '.mega-dropdown', function(e) {
           e.stopPropagation()
-        })
+        });
+        
     } 
+    
 });    
 
-/*if(mobileCheck()) {
-    alert('mobile');
-} else {
-    alert('desktop');
-}*/
-</script>
+$(document).ready(function() {
+    
+    $(window).scroll(function() {
+        var scroll = $(window).scrollTop();
 
-<cfif #site.seo.useSchema# is 1>
-<cfoutput>
-    <script type="application/ld+json">
-    {
-      "@context" : "http://schema.org",
-      "@type" : "Organization",
-      "name" : "#site.seo.companyName#",
-      "url" : "#CGI.SERVER_NAME#",
-      "sameAs" : [
-        <cfif #Trim(site.seo.facebookURL)# is not ''>
-        "#site.seo.facebookURL#",
-        </cfif>
-        
-        <cfif #Trim(site.seo.linkedInURL)# is not ''>
-        "#site.seo.linkedInURL#",
-        </cfif>
-        
-        <cfif #Trim(site.seo.linkedInURL)# is not ''>
-        "#site.seo.googlePlusURL#"
-        </cfif>
-      ]
-    }
-    </script> 
-</cfoutput>
-</cfif>
+        if (scroll >= 200) {
+            $("nav").addClass("smaller");
+        } else {
+            $("nav").removeClass("smaller");
+        }
+    });
 
-
-<script type="text/javascript">
-
-    jQuery(document).ready(function ($) {}
-        // start doc ready
-        $(window).scroll(function() {    
-            var scroll = $(window).scrollTop();
-
-            if (scroll >= 200) {
-                $("nav").addClass("smaller");
-            } else {
-                $("nav").removeClass("smaller");
-            }
-        });
-
-        // slick slider
-        $('.gallery-slider').slick({
-          centerMode: true,
-          centerPadding: '60px',
-          slidesToShow: 3,
-          responsive: [
-            {
-              breakpoint: 768,
-              settings: {
+    // slick slider
+    $('.gallery-slider').slick({
+        centerMode: true,
+        centerPadding: '60px',
+        slidesToShow: 3,
+        responsive: [{
+            breakpoint: 768,
+            settings: {
                 arrows: false,
                 centerMode: true,
                 centerPadding: '40px',
                 slidesToShow: 3
-              }
-            },
-            {
-              breakpoint: 480,
-              settings: {
+            }
+        }, {
+            breakpoint: 480,
+            settings: {
                 arrows: false,
                 centerMode: true,
                 centerPadding: '40px',
                 slidesToShow: 1
-              }
             }
-          ]
-        });
-
-    // end doc ready
-    });
-
+        }]
+    }); 
+    
+});
 
 </script>
+
+<cfif #site.seo.useSchema# is 1>
+<cfoutput>
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "#site.seo.companyName#",
+  "url" : "#CGI.SERVER_NAME#",
+  "sameAs" : [
+    <cfif #Trim(site.seo.facebookURL)# is not ''>
+    "#site.seo.facebookURL#",
+    </cfif>
+
+    <cfif #Trim(site.seo.linkedInURL)# is not ''>
+    "#site.seo.linkedInURL#",
+    </cfif>
+
+    <cfif #Trim(site.seo.linkedInURL)# is not ''>
+    "#site.seo.googlePlusURL#"
+    </cfif>
+  ]
+}
+</script> 
+</cfoutput>
+</cfif>
