@@ -19,6 +19,8 @@ _U is our drive letter, replace it with yours_
 ```shell
 
     npm update -g npm
+    
+    npm install grunt-cli -g --save-dev
 
     npm install grunt --save-dev
     npm install grunt-contrib-less --save-dev
