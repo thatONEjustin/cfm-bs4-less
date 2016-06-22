@@ -1,4 +1,3 @@
-
 /*
  *
  * EVERY BIT OF THIS FILES IS DEPRECATED
@@ -21,9 +20,6 @@ body {
     float: left;
     -webkit-transition: -webkit-transform 0.3s;
     transition: transform 0.3s;
-    
-    /* TODO: WHAT IS THIS FOR? */
-    padding-bottom: 280px;
 }
 
 .content {
@@ -58,68 +54,6 @@ nav {
 
 .nav-logo {
     background-size: contain;
-}
-
-/******
-dropdown */
-
-.dropdown-menu {
-    width: 100%;
-    margin: 0;
-    border: 0;
-    border-radius: 0;
-    padding: 0 1rem;
-    display: block;
-    height: 0;
-    max-height: 0;
-    overflow: hidden;
-    
-    &:before, &:after {
-        content: '';
-        position: relative;
-        width: 100%;
-        height: 1rem;
-        float: left;
-    }
-    
-    > li.kopie > a {
-        padding-left: 5px;
-    }
-}
-
-.dropdown-submenu {
-    
-    > .dropdown-menu {
-        top: 0;
-        left: 100%;
-        margin-top: -6px;
-        margin-left: -1px;
-        -webkit-border-radius: 0 6px 6px 6px;
-        -moz-border-radius: 0 6px 6px 6px;
-        border-radius: 0 6px 6px 6px;
-        
-        > li > a:hover, > .active > a:hover {
-            text-decoration: underline;
-        }
-    }
-    
-    > a:after {
-        border-color: transparent transparent transparent #333;
-        border-style: solid;
-        border-width: 5px 0 5px 5px;
-        content: " ";
-        display: block;
-        float: right;
-        height: 0;
-        margin-right: -10px;
-        margin-top: 5px;
-        width: 0;
-    }
-    
-    :hover > a:after {
-        border-left-color: #555;
-    }
-    
 }
 
 /******
@@ -166,34 +100,6 @@ footer {
     float: left;
     padding-bottom: 30px;
     
-    .footer {
-        width: 100%;
-        float: left;
-        padding: 2rem 0;
-        color: #fff;
-        
-        > div > div {
-            padding-left: 2rem;
-            padding-right: 1rem;
-            border-left: 1px solid rgba(248, 237, 217, 0.12);
-            
-            &:first-child {
-                border: 0;
-            }
-        }
-        
-        p {
-            margin-bottom: 0px;
-            color: #fff;
-            font-size: 0.7rem;
-            padding: 0.5rem 0;
-        }
-        
-        .footer-logo {
-            width: auto;
-            height: 55px;
-        }
-    }
     
     .copyright {
         padding: 0.25rem 0;
@@ -249,16 +155,6 @@ form {
     .form-group {
         position: relative;
     }
-    
-    label.icon {
-        position: absolute;
-        left: 0;
-        font-size: 0.8rem;
-        line-height: 38px;
-        width: 28px;
-        text-align: center;
-    }
-    
     .form-control, button {
         font-size: 0.8rem;
         line-height: 38px;
@@ -282,169 +178,20 @@ form {
     }
 }
 
-/* social media */
-.social-media {
-    list-style: none;
-    padding-left: 0;
-    margin: 0;
-    
-    li {
-        width: auto;
-        height: 25px;
-        display: inline-block;
-        margin: 0 0.25rem;
-        font-size: 16px;
-        
-        a {
-            display: block;
-            width: 25px !important;
-            height: 25px !important;
-            position: relative;
-            z-index: 1;
-
-            background-image: url(img/social-icons.svg);
-            background-repeat: no-repeat;
-            background-size: 100%;
-            background-color: transparent;
-
-            -webkit-transition: all 0.25s ease-in-out;
-            -moz-transition: all 0.25s ease-in-out;
-            -ms-transition: all 0.25s ease-in-out;
-            -o-transition: all 0.25s ease-in-out;
-            transition: all 0.25s ease-in-out;
-            
-            .twitter {
-                background-position: 0px 5%;
-            }
-            
-            .facebook {
-                background-position: 0px 35%;
-            }
-            
-            .linkedin {
-                background-position: 0 68%;
-            }
-            
-            .youtube {
-                background-position: 0px 96%;
-            }
-            
-            &:after {
-                content: '';
-                background: rgba(255,255,255, 0.2);
-                z-index: -1;
-                position: absolute;
-                width: 0;
-                height: 0;
-                top: 50%;
-                left: 50%;
-                opacity: 0;
-                border-radius: 50%;
-                -webkit-transition: all 0.25s ease-in-out;
-                -moz-transition: all 0.25s ease-in-out;
-                -ms-transition: all 0.25s ease-in-out;
-                -o-transition: all 0.25s ease-in-out;
-                transition: all 0.25s ease-in-out;
-                -moz-transform: translateX(-50%) translateY(-50%);
-                -webkit-transform: translateX(-50%) translateY(-50%);
-                -o-transform: translateX(-50%) translateY(-50%);
-                -ms-transform: translateX(-50%) translateY(-50%);
-                transform: translateX(-50%) translateY(-50%);
-            }
-            
-            
-        }
-    }
-}
-
-.social-media li:hover a {
-    margin-top: -5px;
-    
-    &:after {
-        width: 130%;
-        height: 130%;
-        opacity: 1;
-    }
-}
-
-/******
-text styles - ie titles, blockquotes, uls, etc */
-
-
-/* font colors */
-
-.blue {
-    color: #1a3a53;
-}
-
-
-/* titles */
-
-.bold {
-    font-weight: bold;
-}
-
-.title-xl,
-.title-lg,
-.title-md,
-.title-sm,
-.title-xs {
-    margin-bottom: 1rem;
-}
-
-.title-xl {
-    font-size: 2.75rem;
-}
-
-.title-lg {
-    font-size: 2.25rem;
-}
-
-.title-md {
-    font-size: 2rem;
-}
-
-.title-sm {
-    font-size: 1.75rem;
-}
-
-.title-xs {
-    font-size: 1.25rem;
-}
-
-
-/* buttons */
 .btn {
    font-family: "proxima-nova-alt-condensed", "helvetica", "arial", sans-serif; 
     padding: 0.25rem 0.5rem;
     border-radius: 0.25rem;
 }
-.btn.btn-blue {
-    color: #fff;
-    background: #629dcc;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
-}
-.btn.btn-dkblue {
-    background: #1a3e5c;
-    color: #fff;
-}
-.btn.btn-green {
-    background: #90f5b7;
-}
-
-/******
-base plug ins - slick slider, modals/lightbox, etc */
 
 
-/******
-base responsive - only use for spacing and menu  */
-
-
-/* custom menu things */
-
-@media screen and (max-width: 48em) {
-    
+/*
+ *
+ * THIS MENU SYSTEM HAS NO DISCERNABLE CSS LOGIC.
+ * IT KINDA RUNS ON HOPE. DEPRECATED AF. NEED TO FIX.
+ *
+ * * * * * * * * * */
+@media screen and (max-width: 48em) {    
     
     .navbar-nav {
         display: inline;
@@ -453,66 +200,7 @@ base responsive - only use for spacing and menu  */
             border-bottom: 1px solid white;
             border-radius: 0;
         }
-    }
-    
-    .navbar-default {
-        .navbar-brand {
-            display: inline;
-        }
-        
-        .navbar-toggle .icon-bar {
-            background-color: #fff;
-        }
-        
-        .navbar-nav {
-            .dropdown-menu > li > a {
-                color: red;
-                background-color: #ccc;
-                border-radius: 4px;
-                margin-top: 2px;
-            }
-            
-            .open .dropdown-menu > li > a {
-                color: #333;
-                
-                &:hover, &:focus {
-                    background-color: #ccc;
-                }
-            }
-        }
-    }
-    
-    
-    ul.nav li.open > ul.dropdown-menu {
-        /* display: block;*/
-        height: auto;
-        max-height: 100vh;
-    }
-    
-    .dropdown-menu {
-        padding-left: 10px;
-        .dropdown-menu {
-            padding-left: 20px;
-        }
-        
-         .dropdown-menu {
-            padding-left: 30px;
-        }
-    }
-    
-    li.dropdown.open {
-        border: 0px solid red;
-    }
-    
-    ul.nav li:hover > ul.dropdown-menu {
-        /* display: block;*/
-        height: auto;
-        max-height: 100vh;
-    }
-    
-    #navbar {
-        text-align: center;
-    }
+    }    
     
     /* mobile */
     .mobile {
@@ -524,45 +212,51 @@ base responsive - only use for spacing and menu  */
         right: 0;
         z-index: 8;
         height: 50px;
-    }
-    .mobile .nav-logo {
-        height: 50px;
-        width: 210px;
-        position: relative;
-        display: block;
-        float: left;
-    }
-    .mobile .menu-toggle {
-        position: absolute;
-        top: 50%;
-        right: 1rem;
-        height: 50px;
-        line-height: 50px;
-        margin-top: -25px;
-        z-index: 6;
-        background: transparent;
-        border: 0;
-        outline: none !important;
-    }
-    .mobile .menu-toggle i {
-        color: #fff;
-        font-size: 3rem;
+        
+        .nav-logo {
+            height: 50px;
+            width: 210px;
+            position: relative;
+            display: block;
+            float: left;
+        }
+        
+        .menu-toggle {
+            position: absolute;
+            top: 50%;
+            right: 1rem;
+            height: 50px;
+            line-height: 50px;
+            margin-top: -25px;
+            z-index: 6;
+            background: transparent;
+            border: 0;
+            outline: none !important;
+            
+            i {
+                color: #fff;
+                font-size: 3rem;
+            }
+        }
     }
     /* custom - changes to base nav */
     nav {
         padding: 0rem 1.5rem;
     }
+    
     .navbar-nav .nav-item,
     .navbar-nav .nav-item+.nav-item {
         display: block;
         width: 100%;
         margin-left: 0;
     }
+    
     /* drop down */
     .dropdown-menu {
         width: 100%;
         position: relative;
     }
+    
     /* plug in stuff */
     .c-menu {
         position: fixed;
@@ -571,28 +265,34 @@ base responsive - only use for spacing and menu  */
         -webkit-transition: -webkit-transform 0.3s;
         transition: transform 0.3s;
     }
+    
     .c-menu__items {
         list-style: none;
         margin: 0;
         padding: 0;
     }
+    
     .c-menu--push-right {
         width: 100%;
         height: 100%;
         overflow: hidden;
     }
+    
     .c-menu--push-right .c-menu__item {
         display: block;
         text-align: center;
         border-top: solid 1px #b5dbe9;
         border-bottom: solid 1px #3184a1;
     }
+    
     .c-menu--push-right .c-menu__item:first-child {
         border-top: none;
     }
+    
     .c-menu--push-right .c-menu__item:last-child {
         border-bottom: none;
     }
+    
     .c-menu--push-right .c-menu__link {
         display: block;
         padding: 12px 24px;
@@ -607,6 +307,7 @@ base responsive - only use for spacing and menu  */
         border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         outline: 0;
     }
+    
     .c-menu--push-right {
         top: 0;
         right: 0;
@@ -615,19 +316,23 @@ base responsive - only use for spacing and menu  */
         -ms-transform: translateX(100%);
         transform: translateX(100%);
     }
+    
     .c-menu--push-right {
         width: 300px;
     }
+    
     .site.has-push-right {
         -webkit-transform: translateX(-300px);
         -ms-transform: translateX(-300px);
         transform: translateX(-300px);
     }
+    
     .c-menu--push-right {
         -webkit-transform: translateX(300px);
         -ms-transform: translateX(300px);
         transform: translateX(300px);
     }
+    
     .mask {
         position: fixed;
         z-index: 100;
@@ -641,6 +346,7 @@ base responsive - only use for spacing and menu  */
         -webkit-transition: opacity 0.3s, width 0s 0.3s, height 0s 0.3s;
         transition: opacity 0.3s, width 0s 0.3s, height 0s 0.3s;
     }
+    
     .mask.is-active {
         width: 100%;
         height: 100%;
@@ -648,11 +354,13 @@ base responsive - only use for spacing and menu  */
         -webkit-transition: opacity 0.3s;
         transition: opacity 0.3s;
     }
+    
     .c-menu--push-right.is-active {
         -webkit-transform: translateX(0);
         -ms-transform: translateX(0);
         transform: translateX(0);
     }
+    
     .site.has-push-right {
         -webkit-transform: translateX(-300px);
         -ms-transform: translateX(-300px);
