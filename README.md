@@ -11,7 +11,7 @@ Create an easy to understand, extensible framework that's backed with a grunt pa
 4. go to the directory where your project sits. If you're seeing "C:\User\%Usernaem%\ etc then type in:
 
 ```shell
-    cd /s U:\Path\to\folder
+    cd /d U:\Path\to\folder
 ```
 _U is our drive letter, replace it with yours_ 
 
