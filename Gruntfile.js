@@ -19,7 +19,7 @@ module.exports = function (grunt) {
          */ 
         watch: {
             //Watch the .less files in /build/
-            /*styles: {
+            styles: {
                 files: ['build/**.less'],
                 tasks: ['less:main', 'cssmin:userCSS']
             }, 
@@ -30,8 +30,8 @@ module.exports = function (grunt) {
                 options: {
                     nospawn: false
                 }
-            },*/
-            
+            },
+            /*
             styles: {
                 files: ['<%= less.singleMain.src %>'],
                 tasks: ['less:singleMain', 'cssmin:singleMain'],
@@ -48,7 +48,7 @@ module.exports = function (grunt) {
                     nospawn: true
                 }
                 
-            },
+            },*/
             
             copy: {
                 files: ['<%= copy.single.src %>'],
@@ -164,6 +164,10 @@ module.exports = function (grunt) {
     grunt.registerTask('bbuild', ['less:main', 'less:theme', 'copy:basic', 'cssmin:userCSS', 'cssmin:themes']);    
     
     grunt.event.on('watch', function(action, filepath, target) {
+        grunt.config(['copy', 'single', 'src'], filepath); 
+    });
+    /*
+    grunt.event.on('watch', function(action, filepath, target) {
         
         grunt.verbose.write('action->' + action + ', for ' + target + ', filepath: ' + filepath);
         var tmp;
@@ -182,12 +186,6 @@ module.exports = function (grunt) {
                     tmp = 'single';
             }
             
-            /*if(target == 'themes') {
-                tmp = 'singleTheme'
-            } else if (target == 'styles'){
-                tmp = 'singleMain'
-            }*/
-            
             grunt.verbose.write('grunt.config([' + target + ', ' + tmp +', "src"], ' + filepath +');');
             
             grunt.config([target, tmp, 'src'], filepath);
@@ -202,5 +200,5 @@ module.exports = function (grunt) {
             grunt.fail.warn('watch re-config for copy failed');
         }
     });
-    
+    */
 }
