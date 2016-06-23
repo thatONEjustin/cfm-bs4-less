@@ -19,7 +19,7 @@ module.exports = function (grunt) {
          */ 
         watch: {
             //Watch the .less files in /build/
-            styles: {
+            /*styles: {
                 files: ['build/**.less'],
                 tasks: ['less:main', 'cssmin:userCSS']
             }, 
@@ -28,15 +28,35 @@ module.exports = function (grunt) {
                 files: ['build/themes/**.less'],
                 tasks: ['less:theme', 'cssmin:themes'],
                 options: {
-                    spawn: false
+                    nospawn: false
                 }
+            },*/
+            
+            styles: {
+                files: ['<%= less.singleMain.src %>'],
+                tasks: ['less:singleMain', 'cssmin:singleMain'],
+                options: {
+                    nospawn: true
+                }
+                
             },
             
-            //Watch the .cfm files in /build/ 
-            copyStructure: {
-                files: 'build/**.cfm',
-                tasks: ['copy:cfm']                
-            }           
+            themes: {
+                files: ['<%= less.singleTheme.src %>'],
+                tasks: ['less:singleTheme', 'cssmin:singleTheme'],
+                options: {
+                    nospawn: true
+                }
+                
+            },
+            
+            copy: {
+                files: ['<%= copy.single.src %>'],
+                tasks: ['copy:single'],
+                options: {
+                    nospawn: true
+                }
+            }
             
         },
         
@@ -54,7 +74,12 @@ module.exports = function (grunt) {
                     cwd: 'build',
                     src: ['**.cfm', '*.*.cfm', '!**.less', '!**/*.less' , '!*.old.*'],
                     dest: 'dist/'
-                }]                
+                }]
+            }, 
+            
+            single: {
+                src: ['build/**.cfm', '!*.old.*'],
+                dest: 'dist/'
             }
         }, 
         
@@ -77,6 +102,18 @@ module.exports = function (grunt) {
                     dest: 'dist/themes',
                     ext: '.css'
                 }]                
+            },
+            
+            singleMain: {
+                src: ['build/*.less', 'build/!**.old.*', 'build/!{boot,var,mix}*.less'],
+                dest: 'dist/',
+                ext: '.css'
+            },
+            
+            singleTheme: {
+                src: ['build/themes/*.less', 'build/themes/!*.old.*', 'build/themes/!{boot,var,mix}*.less'],
+                dest: 'dist/themes',
+                ext: '.css'
             }
         }, 
         
@@ -95,8 +132,22 @@ module.exports = function (grunt) {
                 src: ['*.css', '!*.min.css'],
                 dest: 'dist/themes',
                 ext: '.min.css'
+            },
+            
+            singleMain: {
+                src: ['dist/*.css', 'dist/!**.old.*', '!{boot,var,mix}*.less'],
+                dest: 'dist/',
+                ext: '.min.css'
+            },
+            
+            singleTheme: {
+                src: ['dist/themes/*.css', 'dist/themes/!**.old.*', 'build/themes/!{boot,var,mix}*.less'],
+                dest: 'dist/themes/',
+                ext: '.min.css'
             }
         }
+        
+        
     });        
 
     // Load plugins
@@ -110,14 +161,46 @@ module.exports = function (grunt) {
     grunt.registerTask('default', ['watch']);    
     
     // bbuild is my basic build script for distribution
-    grunt.registerTask('bbuild', ['less', 'copy:basic', 'cssmin']);    
+    grunt.registerTask('bbuild', ['less:main', 'less:theme', 'copy:basic', 'cssmin:userCSS', 'cssmin:themes']);    
     
-    /*
     grunt.event.on('watch', function(action, filepath, target) {
         
-        grunt.config(['less', 'theme', 'files', 'src'], [filepath]);
-        
+        grunt.verbose.write('action->' + action + ', for ' + target + ', filepath: ' + filepath);
+        var tmp;
+        try {
+            
+            switch(target) {
+                case 'themes': 
+                    tmp = 'singleTheme';
+                break;
+                    
+                case 'styles':
+                    tmp = 'singleMain';
+                break;
+                    
+                default: 
+                    tmp = 'single';
+            }
+            
+            /*if(target == 'themes') {
+                tmp = 'singleTheme'
+            } else if (target == 'styles'){
+                tmp = 'singleMain'
+            }*/
+            
+            grunt.verbose.write('grunt.config([' + target + ', ' + tmp +', "src"], ' + filepath +');');
+            
+            grunt.config([target, tmp, 'src'], filepath);
+            //grunt.config([])
+            //grunt.verbose.write('try{} running\n');            
+            //grunt.verbose.write('\nfilepath->' + filepath);            
+            //grunt.config(['copy', 'single', 'src'], filepath);    
+            //grunt.config(['themes', 'single', 'src'], filepath);    
+            
+        } catch (e) {
+            grunt.verbose.error().error(e.message);
+            grunt.fail.warn('watch re-config for copy failed');
+        }
     });
-    */
     
 }
