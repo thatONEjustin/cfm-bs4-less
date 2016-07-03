@@ -2,8 +2,16 @@
  *
  * STYLES.LESS, Place all site customizations here.
  *
+ * import helper functions
+ *
  * * * * * * * * * */
+@import './themes/helpers.less';
 
+/*
+ *
+ * site variables
+ *
+ * * * * * * * * * */
 @liteGray: #e1e1e1;
 @darkGray: #1d252c;
 @middGray: #c9c9c9;
@@ -11,8 +19,11 @@
 @bodyBG: @liteGray;
 @bodyTC: @darkGray;
 
+@headerFont: 'Century Gothic', 'Sans Serif';
+@bodyFont: "proxima-nova", "helvetica", "arial", sans-serif;
+
 body, html {
-    font-family: "proxima-nova", "helvetica", "arial", sans-serif;
+    font-family: @bodyFont;
     background: @bodyBG;
     color: @bodyTC;
 }
@@ -26,15 +37,11 @@ body, html {
         text-align: center;
         position: absolute;
         top: 55%;
-        left: 50%;
-        -moz-transform: translateX(-50%) translateY(-50%);
-        -webkit-transform: translateX(-50%) translateY(-50px);
-        -o-transform: translateX(-50%) translateY(-50%);
-        -ms-transform: translateX(-50%) translateY(-50px);
-        transform: translateX(-50%) translateY(-50%);
+        
+        .center-block;
         
         h1 {
-            font-family: 'Century Gothic', 'Sans Serif';
+            font-family: @headerFont;
             font-weight: bold;
             text-transform: uppercase;
             margin-bottom: 1rem;
@@ -219,22 +226,15 @@ nav {
                 content: '';
                 position: absolute;
                 bottom: -3px;
-                left: 50%;
                 width: 0;
                 height: 1px;
                 background: #f8edd9;
                 opacity: 0;
                 border: 0;
-                -moz-transform: translateX(-50%);
-                -webkit-transform: translateX(-50%);
-                -o-transform: translateX(-50%);
-                -ms-transform: translateX(-50%);
-                transform: translateX(-50%);
-                -webkit-transition: all 0.25s ease-in-out;
-                -moz-transition: all 0.25s ease-in-out;
-                -ms-transition: all 0.25s ease-in-out;
-                -o-transition: all 0.25s ease-in-out;
-                transition: all 0.25s ease-in-out;
+                
+                .center-block; 
+                
+                .all-transition(0.25s);
             }
         }
 

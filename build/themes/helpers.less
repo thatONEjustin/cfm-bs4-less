@@ -1,0 +1,22 @@
+/*
+ *
+ * helper functions
+ *
+ * * * * * * * * * */ 
+
+.center-block {
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50px);
+    -o-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50px);
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.all-transition(@speed : 0.25s) {
+    -webkit-transition: all @speed ease-in-out;
+    -moz-transition: all @speed ease-in-out;
+    -ms-transition: all @speed ease-in-out;
+    -o-transition: all @speed ease-in-out;
+    transition: all @speed ease-in-out;
+} 
