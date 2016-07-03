@@ -2,7 +2,7 @@
  *
  * helper functions
  *
- * * * * * * * * * */ 
+ * */ 
 
 .center-block {
     left: 50%;
@@ -13,10 +13,30 @@
     transform: translateX(-50%) translateY(-50%);
 }
 
+.transition(@type, @speed, @ease: 'ease-in-out') {
+    -webkit-transition: @type @speed @ease;
+    -moz-transition: @type @speed @ease;
+    -ms-transition: @type @speed @ease;
+    -o-transition: @type @speed @ease;
+    transition: @type @speed @ease;
+}
+
 .all-transition(@speed : 0.25s) {
     -webkit-transition: all @speed ease-in-out;
     -moz-transition: all @speed ease-in-out;
     -ms-transition: all @speed ease-in-out;
     -o-transition: all @speed ease-in-out;
     transition: all @speed ease-in-out;
-} 
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.pointer {
+    cursor: pointer;
+}
