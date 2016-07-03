@@ -131,14 +131,10 @@ body, html {
         line-height: 95px;
         margin-bottom: 1rem;
 
-        -webkit-transition: all 0.3s ease;
-        -moz-transition: all 0.3s ease;
-        -ms-transition: all 0.3s ease;
-        -o-transition: all 0.3s ease;
-        transition: all 0.3s ease;
+        .all-transition(0.3);
         
         .dollar {
-            font-family: 'Century Gothic', 'Sans Serif';
+            font-family: @headerFont;
             font-weight: normal;
             font-size: 1rem;
             display: inline-block;
