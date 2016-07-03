@@ -42,7 +42,7 @@ body, html {
         
         h1 {
             font-family: @headerFont;
-            font-weight: bold;
+            .bold;
             text-transform: uppercase;
             margin-bottom: 1rem;
         }
@@ -58,8 +58,8 @@ body, html {
 	padding: 4rem 0;
     
     h2, h3 {
-        font-family: 'Century Gothic', 'Sans Serif';
-        font-weight: bold;
+        font-family: @headerFont;
+        .bold;
         padding: 0 0 0.75rem;
     }
     
@@ -68,7 +68,7 @@ body, html {
         padding: 0 0 1.5rem;
     }
     
-    .btn-ghost {
+    .btn-ghost { 
         margin-top: 1rem;
     }
 }
@@ -89,7 +89,7 @@ body, html {
 	padding: 9rem 0;
     
     h2 {
-        font-family: 'Century Gothic', 'Sans Serif';
+        font-family: @headerFont;
         font-weight: bold;
         padding: 0 0 0.75rem;
     }
@@ -107,7 +107,7 @@ body, html {
         } 
         
         &:hover {
-            cursor: pointer;
+            .pointer;
         }
         
         &:hover .price {
@@ -125,7 +125,7 @@ body, html {
         height: 95px;
         border-radius: 50%;
         background: rgba(255,255,255,0.4);
-        font-family: 'Century Gothic', 'Sans Serif';
+        font-family: @headerFont;
         font-weight: bold;
         font-size: 2.25rem;
         line-height: 95px;

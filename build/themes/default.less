@@ -1,3 +1,6 @@
+@import './helpers.less';
+
+@bodyFont: "proxima-nova-alt-condensed", "helvetica", "arial", sans-serif;
 /*
  *
  * EVERY BIT OF THIS FILES IS DEPRECATED
@@ -18,8 +21,8 @@ body {
     width: 100%;
     min-height: 100vh;
     float: left;
-    -webkit-transition: -webkit-transform 0.3s;
-    transition: transform 0.3s;
+    
+    .transition(transform, 0.3s);
 }
 
 .content {
@@ -169,7 +172,7 @@ form {
         width: 100%;
         border-radius: 0;
         background: #fff;
-        font-family: "proxima-nova", "helvetica", "arial", sans-serif;
+        font-family: @bodyFont;
     }
     
     button {
@@ -179,7 +182,7 @@ form {
 }
 
 .btn {
-   font-family: "proxima-nova-alt-condensed", "helvetica", "arial", sans-serif; 
+   
     padding: 0.25rem 0.5rem;
     border-radius: 0.25rem;
 }
@@ -190,7 +193,7 @@ form {
  * THIS MENU SYSTEM HAS NO DISCERNABLE CSS LOGIC.
  * IT KINDA RUNS ON HOPE. DEPRECATED AF. NEED TO FIX.
  *
- * * * * * * * * * */
+ */
 @media screen and (max-width: 48em) {    
     
     .navbar-nav {
@@ -262,8 +265,9 @@ form {
         position: fixed;
         z-index: 200;
         background-color: #020202;
-        -webkit-transition: -webkit-transform 0.3s;
-        transition: transform 0.3s;
+        /*-webkit-transition: -webkit-transform 0.3s;
+        transition: transform 0.3s;*/
+        .transition(transform, 0.3s);
     }
     
     .c-menu__items {
