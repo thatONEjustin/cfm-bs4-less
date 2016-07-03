@@ -19,24 +19,11 @@ module.exports = function (grunt) {
          */ 
         watch: {
             //Watch the .less files in /build/
-            //styles: {
-                //files: ['build/**.less'],
-                //tasks: ['less:main', 'cssmin:userCSS']
-            //},
-            
             styles: {
-                files: ['build/**.less'],
-                tasks: ['less:single', 'cssmin:userCSS'],
+                files: ['build/**/**.less', '!helpers.less'],
+                tasks: ['less:single', 'cssmin:single'],
                 options: {
                     nospawn: true
-                }
-            },
-            
-            themes: {
-                files: ['build/themes/**.less'],
-                tasks: ['less:theme', 'cssmin:themes'],
-                options: {
-                    nospawn: false
                 }
             },
             
@@ -118,15 +105,9 @@ module.exports = function (grunt) {
                 ext: '.min.css'
             },
             
-            singleMain: {
-                src: ['dist/*.css', 'dist/!**.old.*', '!{boot,var,mix}*.less'],
-                dest: 'dist/',
-                ext: '.min.css'
-            },
-            
-            singleTheme: {
-                src: ['dist/themes/*.css', 'dist/themes/!**.old.*', 'build/themes/!{boot,var,mix}*.less'],
-                dest: 'dist/themes/',
+            single: {
+                src: ['path/to/source.css'], 
+                dest: 'path/to/dest',
                 ext: '.min.css'
             }
         }
@@ -147,24 +128,58 @@ module.exports = function (grunt) {
     // bbuild is my basic build script for distribution
     grunt.registerTask('bbuild', ['less:main', 'less:theme', 'copy:basic', 'cssmin:userCSS', 'cssmin:themes']);    
     
-    grunt.event.on('watch', function(action, filepath, target) {
-        //grunt.verbose.write('action->' + action + ', for target:' + target + ', filepath: ' + filepath);
+    grunt.event.on('watch', function(action, filepath, target) {       
+                
 
         switch(target) {
             case 'themes': 
-                //tmp = 'singleTheme';
-                //grunt.config(['less', 'single', 'src', filtpath]);
+                var source   = filepath;
+                var path     = source.split('\\');
+                var filename = getFileName(path) + '.css';
+                
+                var result   = writeFilePath(path, 'dist', '\\') + filename;
+                var obj      = {};
+                    obj[result] = source;   
+                
+                var minify   = writeFilePath(path, 'dist', '/') + getFileName(path) + '.min.css';
+                
+                /*grunt.verbose.write(
+                    
+                    ' \n action->' + action +                     
+                    ' \n target->' + target +                     
+                    ' \n filepath->' + filepath + 
+                    
+                    ' \n path->' + path + 
+                    ' \n filename->' + filename + 
+                    ' \n source->' + source + 
+                    ' \n result->' + result + 
+                    ' \n minify->' + minify + 
+                    ' \n obj.keys->' + Object.keys(obj) + 
+                    '\n'
+                    
+                );*/
+                
+                grunt.config(['less', 'single', 'files'], obj);
+                grunt.config(['cssmin', 'single', 'src'], result);
+                grunt.config(['cssmin', 'single', 'dest'], minify);
             break;
 
             case 'styles':
-                var tmp = filepath.split('.');
-                    tmp = tmp[0] + '.css';
-                //grunt.verbose.write('tmp:styles->' + tmp + ' | filepath->' + filepath);
+                var source   = filepath; 
+                var path     = source.split('\\');
+                var filename = getFileName(path) + '.css';
                 
-                var files = { tmp : filepath }
+                var result   = writeFilePath(path, 'dist', '\\') + filename;
+                var obj      = {};
+                    obj[result] = source;   
                 
-                    grunt.verbose.write('files["tmp"]->' + files['tmp']);
-                grunt.config(['less', 'single', 'files'], files);
+                var minify   = writeFilePath(path, 'dist', '/') + getFileName(path) + '.min.css';
+                
+                
+                //grunt.verbose.write('source->' + source + ' | result->' + result);
+                grunt.config(['less', 'single', 'files'], obj);
+                grunt.config(['cssmin', 'single', 'src'], result);
+                grunt.config(['cssmin', 'single', 'dest'], minify);
             break;
                 
             case 'copy':                
@@ -173,42 +188,27 @@ module.exports = function (grunt) {
                 
             default:                
                 var tmp = filepath.split('.');
-                    grunt.verbose.write('tmp->' + tmp);
+                grunt.verbose.write('tmp->' + tmp);
         }
     });
-    /*
-    grunt.event.on('watch', function(action, filepath, target) {
-        
-        grunt.verbose.write('action->' + action + ', for ' + target + ', filepath: ' + filepath);
-        var tmp;
-        try {
-            
-            switch(target) {
-                case 'themes': 
-                    tmp = 'singleTheme';
-                break;
-                    
-                case 'styles':
-                    tmp = 'singleMain';
-                break;
-                    
-                default: 
-                    tmp = 'single';
-            }
-            
-            grunt.verbose.write('grunt.config([' + target + ', ' + tmp +', "src"], ' + filepath +');');
-            
-            grunt.config([target, tmp, 'src'], filepath);
-            //grunt.config([])
-            //grunt.verbose.write('try{} running\n');            
-            //grunt.verbose.write('\nfilepath->' + filepath);            
-            //grunt.config(['copy', 'single', 'src'], filepath);    
-            //grunt.config(['themes', 'single', 'src'], filepath);    
-            
-        } catch (e) {
-            grunt.verbose.error().error(e.message);
-            grunt.fail.warn('watch re-config for copy failed');
-        }
-    });
-    */
+}
+
+function writeFilePath(path, target, slash) {
+    var tar = target + slash;
+    var tmp  = '';         
+    for(var a=1; a<path.length-1;a++) {
+        tmp += path[a] + slash;
+    }                
+
+    return tar + tmp;
+}
+
+function getFileName(path) {
+
+    for(var i=0;i<path.length;i++) {
+        var tmp = path[i];
+            tmp = tmp.split('.');
+    }
+    
+    return tmp[0];
 }
