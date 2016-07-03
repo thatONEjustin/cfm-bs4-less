@@ -19,10 +19,18 @@ module.exports = function (grunt) {
          */ 
         watch: {
             //Watch the .less files in /build/
+            //styles: {
+                //files: ['build/**.less'],
+                //tasks: ['less:main', 'cssmin:userCSS']
+            //},
+            
             styles: {
                 files: ['build/**.less'],
-                tasks: ['less:main', 'cssmin:userCSS']
-            }, 
+                tasks: ['less:single', 'cssmin:userCSS'],
+                options: {
+                    nospawn: true
+                }
+            },
             
             themes: {
                 files: ['build/themes/**.less'],
@@ -31,24 +39,6 @@ module.exports = function (grunt) {
                     nospawn: false
                 }
             },
-            /*
-            styles: {
-                files: ['<%= less.singleMain.src %>'],
-                tasks: ['less:singleMain', 'cssmin:singleMain'],
-                options: {
-                    nospawn: true
-                }
-                
-            },
-            
-            themes: {
-                files: ['<%= less.singleTheme.src %>'],
-                tasks: ['less:singleTheme', 'cssmin:singleTheme'],
-                options: {
-                    nospawn: true
-                }
-                
-            },*/
             
             copy: {
                 files: ['<%= copy.single.src %>'],
@@ -88,7 +78,7 @@ module.exports = function (grunt) {
                 files: [{
                     expand: true,
                     cwd: 'build',
-                    src: ['*.less', '!**.old.*', '!{boot,var,mix}*.less'],
+                    src: ['*.less', '!**.old.*', '!{boot,var,mix,helpers}*.less'],
                     dest: 'dist',
                     ext: '.css'
                 }]   
@@ -98,22 +88,16 @@ module.exports = function (grunt) {
                 files: [{
                     expand: true,
                     cwd: 'build/themes',
-                    src: ['*.less', '!**.old.*', '!{boot,var,mix}*.less'],
+                    src: ['*.less', '!**.old.*', '!{boot,var,mix,helpers}*.less'],
                     dest: 'dist/themes',
                     ext: '.css'
                 }]                
             },
             
-            singleMain: {
-                src: ['build/*.less', 'build/!**.old.*', 'build/!{boot,var,mix}*.less'],
-                dest: 'dist/',
-                ext: '.css'
-            },
-            
-            singleTheme: {
-                src: ['build/themes/*.less', 'build/themes/!*.old.*', 'build/themes/!{boot,var,mix}*.less'],
-                dest: 'dist/themes',
-                ext: '.css'
+            single: {
+                files: {
+                  'path/to/result.css': 'path/to/source.less'
+                }   
             }
         }, 
         
@@ -164,7 +148,33 @@ module.exports = function (grunt) {
     grunt.registerTask('bbuild', ['less:main', 'less:theme', 'copy:basic', 'cssmin:userCSS', 'cssmin:themes']);    
     
     grunt.event.on('watch', function(action, filepath, target) {
-        grunt.config(['copy', 'single', 'src'], filepath); 
+        //grunt.verbose.write('action->' + action + ', for target:' + target + ', filepath: ' + filepath);
+
+        switch(target) {
+            case 'themes': 
+                //tmp = 'singleTheme';
+                //grunt.config(['less', 'single', 'src', filtpath]);
+            break;
+
+            case 'styles':
+                var tmp = filepath.split('.');
+                    tmp = tmp[0] + '.css';
+                //grunt.verbose.write('tmp:styles->' + tmp + ' | filepath->' + filepath);
+                
+                var files = { tmp : filepath }
+                
+                    grunt.verbose.write('files["tmp"]->' + files['tmp']);
+                grunt.config(['less', 'single', 'files'], files);
+            break;
+                
+            case 'copy':                
+                grunt.config(['copy', 'single', 'src'], filepath); 
+            break;
+                
+            default:                
+                var tmp = filepath.split('.');
+                    grunt.verbose.write('tmp->' + tmp);
+        }
     });
     /*
     grunt.event.on('watch', function(action, filepath, target) {
