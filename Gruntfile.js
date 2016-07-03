@@ -12,11 +12,6 @@
 module.exports = function (grunt) {
 
     grunt.initConfig({        
-        /*
-         * 
-         * TODO: Refer to https://github.com/gruntjs/grunt-contrib-watch/issues/65 RE: watching only changed files. We will need to relook at how the task is handled; 
-         *
-         */ 
         watch: {
             //Watch the .less files in /build/
             styles: {
@@ -27,6 +22,7 @@ module.exports = function (grunt) {
                 }
             },
             
+            //Watch .cfm files in /build/ copy to /dist/ 
             copy: {
                 files: ['<%= copy.single.src %>'],
                 tasks: ['copy:single'],
