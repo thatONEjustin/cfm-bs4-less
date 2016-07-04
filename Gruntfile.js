@@ -128,6 +128,7 @@ module.exports = function (grunt) {
                 
 
         switch(target) {
+            case 'styles':
             case 'themes': 
                 var source   = filepath;
                 var path     = source.split('\\');
@@ -160,24 +161,6 @@ module.exports = function (grunt) {
                 grunt.config(['cssmin', 'single', 'dest'], minify);
             break;
 
-            case 'styles':
-                var source   = filepath; 
-                var path     = source.split('\\');
-                var filename = getFileName(path) + '.css';
-                
-                var result   = writeFilePath(path, 'dist', '\\') + filename;
-                var obj      = {};
-                    obj[result] = source;   
-                
-                var minify   = writeFilePath(path, 'dist', '/') + getFileName(path) + '.min.css';
-                
-                
-                //grunt.verbose.write('source->' + source + ' | result->' + result);
-                grunt.config(['less', 'single', 'files'], obj);
-                grunt.config(['cssmin', 'single', 'src'], result);
-                grunt.config(['cssmin', 'single', 'dest'], minify);
-            break;
-                
             case 'copy':                
                 grunt.config(['copy', 'single', 'src'], filepath); 
             break;
@@ -189,22 +172,19 @@ module.exports = function (grunt) {
     });
 }
 
-function writeFilePath(path, target, slash) {
-    var tar = target + slash;
+function writeFilePath(path, target, slash) {    
     var tmp  = '';         
     for(var a=1; a<path.length-1;a++) {
         tmp += path[a] + slash;
     }                
 
-    return tar + tmp;
+    return (target + slash) + tmp;
 }
 
 function getFileName(path) {
-
     for(var i=0;i<path.length;i++) {
         var tmp = path[i];
             tmp = tmp.split('.');
-    }
-    
+    }    
     return tmp[0];
 }
