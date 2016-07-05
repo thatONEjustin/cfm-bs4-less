@@ -16,7 +16,7 @@ module.exports = function (grunt) {
         watch: {
             //Watch the .less files in /build/
             styles: {
-                files: ['build/**/**.less', '!helpers.less'],
+                files: ['build/**/**.less', '!build/themes/helpers.less'],
                 tasks: ['less:single', 'cssmin:single'],
                 options: {
                     nospawn: true
@@ -130,7 +130,7 @@ module.exports = function (grunt) {
 
         switch(target) {
             case 'styles':
-            case 'themes': 
+            case 'themes':                 
                 var path     = filepath.split('\\');
                 var filename = getFileName(path) + '.css';
                 
@@ -139,26 +139,30 @@ module.exports = function (grunt) {
                     obj[result] = filepath;   
                 
                 var minify   = writeFilePath(path, 'dist', '/') + getFileName(path) + '.min.css';
-                
-                /*grunt.verbose.write(
-                    
-                    ' \n action->' + action +                     
-                    ' \n target->' + target +                     
-                    ' \n filepath->' + filepath + 
-                    
-                    ' \n path->' + path + 
-                    ' \n filename->' + filename + 
-                    ' \n source->' + source + 
-                    ' \n result->' + result + 
-                    ' \n minify->' + minify + 
-                    ' \n obj.keys->' + Object.keys(obj) + 
-                    '\n'
-                    
-                );*/
-                
+
+
+                /* Just some helper outputs for line 132 css switch case.                 
+                    grunt.verbose.write(
+
+                        ' \n action->' + action +                     
+                        ' \n target->' + target +                     
+                        ' \n filepath->' + filepath + 
+
+                        ' \n path->' + path + 
+                        ' \n filename->' + filename + 
+                        ' \n source->' + source + 
+                        ' \n result->' + result + 
+                        ' \n minify->' + minify + 
+                        ' \n obj.keys->' + Object.keys(obj) + 
+                        '\n'
+
+                    );
+                **/
+
                 grunt.config(['less', 'single', 'files'], obj);
                 grunt.config(['cssmin', 'single', 'src'], result);
-                grunt.config(['cssmin', 'single', 'dest'], minify);
+                grunt.config(['cssmin', 'single', 'dest'], minify);   
+                
             break;
 
             case 'copy':                
@@ -172,6 +176,11 @@ module.exports = function (grunt) {
     });
 }
 
+/*
+ * writeFilePath(path = file[1,2,3...], target = dist, slash = for file structure)
+ * used to write path of file changed
+ *
+ **/
 function writeFilePath(path, target, slash) {    
     var tmp  = '';         
     for(var a=1; a<path.length-1;a++) {
@@ -181,6 +190,11 @@ function writeFilePath(path, target, slash) {
     return (target + slash) + tmp;
 }
 
+/*
+ * getFileName(path = file[1,2,3...]) 
+ * used to get file name
+ *
+ **/
 function getFileName(path) {
     for(var i=0;i<path.length;i++) {
         var tmp = path[i];
