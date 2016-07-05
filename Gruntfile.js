@@ -1,8 +1,9 @@
 /*
- * grunt-contrib-uglify
- * http://gruntjs.com/
+ * cfm-bs4-less
+ * http://github.com/thatONEjustin/
+ * http://justin.tinytanky.net
  *
- * Copyright (c) 2016 "Cowboy" Ben Alman, contributors
+ * Copyright (c) 2016 Justin Paelmo
  * Licensed under the MIT license.
  */
 
@@ -130,13 +131,12 @@ module.exports = function (grunt) {
         switch(target) {
             case 'styles':
             case 'themes': 
-                var source   = filepath;
-                var path     = source.split('\\');
+                var path     = filepath.split('\\');
                 var filename = getFileName(path) + '.css';
                 
                 var result   = writeFilePath(path, 'dist', '\\') + filename;
                 var obj      = {};
-                    obj[result] = source;   
+                    obj[result] = filepath;   
                 
                 var minify   = writeFilePath(path, 'dist', '/') + getFileName(path) + '.min.css';
                 
