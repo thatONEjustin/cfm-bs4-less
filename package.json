@@ -1,6 +1,6 @@
 {
   "name": "grunt-project-name",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "author": "Justin P.",
   "private": true,
   "devDependencies": {
