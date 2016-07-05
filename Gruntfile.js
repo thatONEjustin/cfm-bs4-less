@@ -24,12 +24,17 @@ module.exports = function (grunt) {
             },
             
             //Watch .cfm files in /build/ copy to /dist/ 
-            copy: {
+            cfm: {
                 files: ['<%= copy.single.src %>'],
                 tasks: ['copy:single'],
                 options: {
                     nospawn: true
                 }
+            },
+            
+            img: {
+                files: ['build/img/*.{jpg,png,svg,gif}', 'build/img/**/*.{jpg,png,svg,gif}', '!build/img/*.old.{jpg,png,svg,gif}', '!build/img/**/*.old.{jpg,png,svg,gif}'],
+                tasks: ['copy:img']
             }
             
         },
@@ -48,6 +53,15 @@ module.exports = function (grunt) {
                     cwd: 'build',
                     src: ['**.cfm', '*.*.cfm', '!**.less', '!**/*.less' , '!*.old.*'],
                     dest: 'dist/'
+                }]
+            }, 
+            
+            img: {
+                files: [{
+                    expand: true,
+                    cwd: 'build/img',
+                    src: ['**.{jpg,png,svg,gif}', '*.*.{jpg,png,svg,gif}', '!**.cfm', '!**/*.cfm' , '!**.less', '!**/*.less' , '!*.old.*'],
+                    dest: 'dist/img'
                 }]
             }, 
             
@@ -126,7 +140,11 @@ module.exports = function (grunt) {
     grunt.registerTask('bbuild', ['less:main', 'less:theme', 'copy:basic', 'cssmin:userCSS', 'cssmin:themes']);    
     
     grunt.event.on('watch', function(action, filepath, target) {       
-                
+        grunt.verbose.write(
+            ' \n action->' + action +                     
+            ' \n target->' + target +                     
+            ' \n filepath->' + filepath
+        )
 
         switch(target) {
             case 'styles':
@@ -156,7 +174,7 @@ module.exports = function (grunt) {
                         ' \n obj.keys->' + Object.keys(obj) + 
                         '\n'
 
-                    );
+                    )
                 **/
 
                 grunt.config(['less', 'single', 'files'], obj);
@@ -165,7 +183,7 @@ module.exports = function (grunt) {
                 
             break;
 
-            case 'copy':                
+            case 'cfm':
                 grunt.config(['copy', 'single', 'src'], filepath); 
             break;
                 
