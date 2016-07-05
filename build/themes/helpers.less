@@ -1,42 +1,44 @@
 /*
+ * helper mixins
  *
- * helper functions
+ * .text(@size: 10) {
+ *      font-size: e(%("%dpx", @size));
+ *      line-height: e(%("%dem", @size/10));
+ * } 
+ * where %d == @size, this is a "Trim" function which removes whitespace and properly writes a value for an attribute.
+ * you can see below in .transistion(@arguments) that we use it to write the proper transition types per browser
  *
- * */ 
-
-.center-block {
+ **/ 
+.center-block() {
     left: 50%;
-    -moz-transform: translateX(-50%) translateY(-50%);
-    -webkit-transform: translateX(-50%) translateY(-50px);
-    -o-transform: translateX(-50%) translateY(-50%);
-    -ms-transform: translateX(-50%) translateY(-50px);
-    transform: translateX(-50%) translateY(-50%);
+    
+    .move;
 }
 
-.transition(@type, @speed, @ease: 'ease-in-out') {
-    -webkit-transition: @type @speed @ease;
-    -moz-transition: @type @speed @ease;
-    -ms-transition: @type @speed @ease;
-    -o-transition: @type @speed @ease;
-    transition: @type @speed @ease;
+.move(@x: 50%, @y: 50%) {    
+    -moz-transform:    translateX(@x) translateY(@y);
+    -webkit-transform: translateX(@x) translateY(@y);
+    -o-transform:      translateX(@x) translateY(@y);
+    -ms-transform:     translateX(@x) translateY(@y);
+    transform:         translateX(@x) translateY(@y);
 }
 
-.all-transition(@speed : 0.25s) {
-    -webkit-transition: all @speed ease-in-out;
-    -moz-transition: all @speed ease-in-out;
-    -ms-transition: all @speed ease-in-out;
-    -o-transition: all @speed ease-in-out;
-    transition: all @speed ease-in-out;
+.transition(@type: 'all', @speed: 0.25s, @ease: ease) {
+    -webkit-transition: e(%("-webkit-%d", @type)) @speed @ease;
+    -moz-transition:    e(%("-moz-%d", @type))  @speed @ease;
+    -ms-transition:     e(%("-ms-%d", @type))  @speed @ease;
+    -o-transition:      e(%("-o-%d", @type))  @speed @ease;
+    transition:         @type @speed @ease;
 }
 
-.uppercase {
+.uppercase() {
     text-transform: uppercase;
 }
 
-.bold {
+.bold() {
     font-weight: bold;
 }
 
-.pointer {
+.pointer() {
     cursor: pointer;
 }
