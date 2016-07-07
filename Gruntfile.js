@@ -14,7 +14,12 @@ module.exports = function (grunt) {
 
     grunt.initConfig({        
         watch: {
-            //Watch the .less files in /build/
+            /*
+             *
+             * @TODO: The single file processing has a bug with options: { nospawn: true }
+             *        If errors are present during compile, all future tasks won't run
+             *
+             **/            
             styles: {
                 files: ['build/**/**.less', '!build/themes/helpers.less'],
                 tasks: ['less:single', 'cssmin:single'],
