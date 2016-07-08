@@ -9,10 +9,10 @@
  * you can see below in .transistion(@arguments) that we use it to write the proper transition types per browser
  *
  **/ 
+
 .center-block() {
-    left: 50%;
-    
-    .move;
+    left: -50%;
+    .move(50%, 50%);
 }
 
 /*
@@ -21,7 +21,7 @@
  *        so far it can only be used for centering the hero text on the home page. 
  *        extend to allow usage for use when only 1 @arg is entered. 
  **/
-.move(@x: 50%, @y: 50%) {    
+.move(@x: 0%, @y: 0%) {      
     -moz-transform:    translateX(@x) translateY(@y);
     -webkit-transform: translateX(@x) translateY(@y);
     -o-transform:      translateX(@x) translateY(@y);
@@ -29,12 +29,41 @@
     transform:         translateX(@x) translateY(@y);
 }
 
-.transition(@type: 'all', @speed: 0.25s, @ease: ease) {
-    -webkit-transition: e(%("-webkit-%d", @type)) @speed @ease;
-    -moz-transition:    e(%("-moz-%d", @type))  @speed @ease;
-    -ms-transition:     e(%("-ms-%d", @type))  @speed @ease;
-    -o-transition:      e(%("-o-%d", @type))  @speed @ease;
-    transition:         @type @speed @ease;
+.font(@family: 'Century Gothic', 'Sans Serif'; @size: 1rem; @bold: false;) {
+  
+  @f: @family;
+  @s: @size;
+  @b: @bold;
+  
+  & when not (@b = false) {
+    font-weight: bold;
+  }
+    
+  font-family: @f;
+  font-size: @s;
+}
+
+.transition(@type: all; @speed: 0.2s; @ease: ease) {
+  @t: @type;
+  @s: @speed;
+  @e: @ease;
+    
+  & when (@t = all) {
+    -webkit-transition: all @speed @ease;
+    -moz-transition:    all @speed @ease;
+    -ms-transition:     all @speed @ease;
+    -o-transition:      all @speed @ease;
+    transition:         all @speed @ease;
+  }
+  
+  & when not (@t = all) {
+    -webkit-transition: e(%("-webkit-%d", @t)) @s @e;
+    -moz-transition:    e(%("-moz-%d", @t))  @s @e;
+    -ms-transition:     e(%("-ms-%d", @t))  @s @e;
+    -o-transition:      e(%("-o-%d", @t))  @s @e;
+    transition:         @t @s @e;
+  }
+  
 }
 
 .uppercase() {
