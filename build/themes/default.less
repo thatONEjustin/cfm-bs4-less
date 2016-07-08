@@ -317,19 +317,21 @@ form {
         top: 0;
         right: 0;
         left: auto;
-        -webkit-transform: translateX(100%);
+        /*-webkit-transform: translateX(100%);
         -ms-transform: translateX(100%);
-        transform: translateX(100%);
+        transform: translateX(100%);*/
+        .move(@x:100%);
     }
     
     .c-menu--push-right {
-        width: 300px;
+        width: 300px; 
     }
     
     .site.has-push-right {
-        -webkit-transform: translateX(-300px);
+        /*-webkit-transform: translateX(-300px);
         -ms-transform: translateX(-300px);
-        transform: translateX(-300px);
+        transform: translateX(-300px);*/
+        .move(@x: -300px);
     }
     
     .c-menu--push-right {

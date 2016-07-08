@@ -22,11 +22,35 @@
  *        extend to allow usage for use when only 1 @arg is entered. 
  **/
 .move(@x: 0%, @y: 0%) {      
-    -moz-transform:    translateX(@x) translateY(@y);
+    /*-moz-transform:    translateX(@x) translateY(@y);
     -webkit-transform: translateX(@x) translateY(@y);
     -o-transform:      translateX(@x) translateY(@y);
     -ms-transform:     translateX(@x) translateY(@y);
-    transform:         translateX(@x) translateY(@y);
+    transform:         translateX(@x) translateY(@y);*/
+    
+    & when not (@y = 0%) {
+        -moz-transform:    translateY(@y);
+        -webkit-transform: translateY(@y);
+        -o-transform:      translateY(@y);
+        -ms-transform:     translateY(@y);
+        transform:         translateY(@y);
+    }
+    
+    & when not (@x = 0%) {
+        -moz-transform:    translateX(@x);
+        -webkit-transform: translateX(@x);
+        -o-transform:      translateX(@x);
+        -ms-transform:     translateX(@x);
+        transform:         translateX(@x);
+    }
+    
+    & when not (default) {
+        -moz-transform:    translateX(@x) translateY(@y);
+        -webkit-transform: translateX(@x) translateY(@y);
+        -o-transform:      translateX(@x) translateY(@y);
+        -ms-transform:     translateX(@x) translateY(@y);
+        transform:         translateX(@x) translateY(@y);
+    }
 }
 
 .font(@family: 'Century Gothic', 'Sans Serif'; @size: 1rem; @bold: false;) {
