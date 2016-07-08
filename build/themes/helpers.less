@@ -15,42 +15,36 @@
     .move(50%, 50%);
 }
 
-/*
- *
- * @TODO: this needs to be adjusted for cleaner use.
- *        so far it can only be used for centering the hero text on the home page. 
- *        extend to allow usage for use when only 1 @arg is entered. 
- **/
-.move(@x: 0%, @y: 0%) {      
-    /*-moz-transform:    translateX(@x) translateY(@y);
-    -webkit-transform: translateX(@x) translateY(@y);
-    -o-transform:      translateX(@x) translateY(@y);
-    -ms-transform:     translateX(@x) translateY(@y);
-    transform:         translateX(@x) translateY(@y);*/
-    
-    & when not (@y = 0%) {
-        -moz-transform:    translateY(@y);
-        -webkit-transform: translateY(@y);
-        -o-transform:      translateY(@y);
-        -ms-transform:     translateY(@y);
-        transform:         translateY(@y);
-    }
-    
-    & when not (@x = 0%) {
+.move(@x: 0; @y: 0) {
+  & when not (@x = 0) {
+    & when  (@y = 0) {
         -moz-transform:    translateX(@x);
         -webkit-transform: translateX(@x);
         -o-transform:      translateX(@x);
         -ms-transform:     translateX(@x);
         transform:         translateX(@x);
     }
-    
-    & when not (default) {
+  }
+  
+  & when not (@y = 0) {
+    & when (@x = 0) {
+        -moz-transform:    translateY(@y);
+        -webkit-transform: translateY(@y);
+        -o-transform:      translateY(@y);
+        -ms-transform:     translateY(@y);
+        transform:         translateY(@y);
+    }
+  }
+  
+  & when not (@x = 0) {
+    & when not (@y = 0) {
         -moz-transform:    translateX(@x) translateY(@y);
         -webkit-transform: translateX(@x) translateY(@y);
         -o-transform:      translateX(@x) translateY(@y);
         -ms-transform:     translateX(@x) translateY(@y);
         transform:         translateX(@x) translateY(@y);
     }
+  }
 }
 
 .font(@family: 'Century Gothic', 'Sans Serif'; @size: 1rem; @bold: false;) {
