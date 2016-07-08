@@ -52,28 +52,34 @@ module.exports = function (grunt) {
             */
             
             styles: {
-                files: ['build/**/**.less', '!build/themes/helpers.less'],
-                tasks: ['less:single', 'cssmin:single'],
+                files: ['build/**.less', '!build/themes/helpers.less'],
+                tasks: ['less:main', 'cssmin:main'],
                 options: {
-                    spawn: false
+                    interrupt: true
                 }
             }, 
             
-            cfm: {
-                files: ['<%= copy.single.src %>'],
-                tasks: ['copy:single'],
+            
+            themes: {
+                files: ['build/themes/**.less', '!build/themes/helpers.less'],
+                tasks: ['less:themes', 'cssmin:themes'],
                 options: {
-                    spawn: false
+                    interrupt: true
                 }
             }, 
             
-            img: {
-                files: ['build/img/**.{jpg,png,svg,gif}'],
-                tasks: ['copy:img'],
-                options: {
-                    spawn: false,
-                }
+            //Watch the .cfm files in /build/ 
+            copyStructure: {
+                files: 'build/**.cfm',
+                tasks: ['copy:cfm']                
+            },
+            
+            copyIMG: {
+                files: 'build/img/**.{jpg,svg,png,gif}',
+                tasks: ['copy:img']
             }
+            
+            
         },
         
         copy: {
@@ -117,7 +123,7 @@ module.exports = function (grunt) {
                 }]   
             },
             
-            theme: {
+            themes: {
                 files: [{
                     expand: true,
                     cwd: 'build/themes',
