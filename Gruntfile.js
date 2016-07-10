@@ -51,6 +51,14 @@ module.exports = function (grunt) {
             }
             */
             
+            helpers: {
+                files: ['build/themes/helpers.less'],
+                tasks: ['less:main', 'cssmin:main'],
+                options: {
+                    interrupt: true
+                }
+            }, 
+            
             styles: {
                 files: ['build/**.less', '!build/themes/helpers.less'],
                 tasks: ['less:main', 'cssmin:main'],

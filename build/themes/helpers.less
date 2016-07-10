@@ -12,7 +12,7 @@
 
 .center-block() {
     left: -50%;
-    .move(50%, 50%);
+    .move(50%, -50%);
 }
 
 .move(@x: 0; @y: 0) {
@@ -47,8 +47,7 @@
   }
 }
 
-.font(@family: 'Century Gothic', 'Sans Serif'; @size: 1rem; @bold: false;) {
-  
+.font(@family: 'Century Gothic', 'Sans Serif'; @size: 1rem; @bold: false;) {  
   @f: @family;
   @s: @size;
   @b: @bold;
