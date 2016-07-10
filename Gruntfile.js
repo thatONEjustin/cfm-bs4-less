@@ -180,7 +180,8 @@ module.exports = function (grunt) {
     // bbuild is my basic build script for distribution
     grunt.registerTask('bbuild', ['less:main', 'less:theme', 'copy:basic', 'cssmin:main', 'cssmin:themes']);    
         
-    grunt.event.on('watch', function(action, filepath, target) {       
+    /*
+    grunt.event.on('watch', function(action, filepath, target) {
         
         switch(target) {
             case 'styles':
@@ -194,7 +195,7 @@ module.exports = function (grunt) {
                 
                 var minify   = writeFilePath(path, 'dist', '/') + getFileName(path) + '.min.css';
 
-                /*
+                
                 //Just some helper outputs for line 132 css switch case.                 
                     grunt.verbose.write(
 
@@ -211,7 +212,7 @@ module.exports = function (grunt) {
                         '\n'
 
                     )                
-                */               
+                
 
                 grunt.config(['less', 'single', 'files'], obj);
                 grunt.config(['cssmin', 'single', 'src'], result);
@@ -239,6 +240,7 @@ module.exports = function (grunt) {
                 );
         }
     });
+    */
 }
 
 /*
