@@ -178,7 +178,7 @@ module.exports = function (grunt) {
     grunt.registerTask('default', ['watch']);    
     
     // bbuild is my basic build script for distribution
-    grunt.registerTask('bbuild', ['less:main', 'less:theme', 'copy:basic', 'cssmin:main', 'cssmin:themes']);    
+    grunt.registerTask('bbuild', ['less:main', 'less:themes', 'copy:basic', 'cssmin:main', 'cssmin:themes']);    
         
     /*
     grunt.event.on('watch', function(action, filepath, target) {
