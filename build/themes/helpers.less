@@ -47,6 +47,17 @@
   }
 }
 
+.scale(@width: 1; @height: 1;) {
+    @w: @width;
+    @h: @height; 
+   
+    -webkit-transition: scale(@w, @h);
+    -moz-transition: scale(@w, @h);
+    -ms-transition: scale(@w, @h);
+    -o-transition: scale(@w, @h);
+    transition: scale(@w, @h);
+}
+
 .font(@family: 'Century Gothic', 'Sans Serif'; @size: 1rem; @bold: false;) {  
   @f: @family;
   @s: @size;
