@@ -58,6 +58,12 @@
     transition: scale(@w, @h);
 }
 
+
+.box-shadow(@horz: 0; @vert: 0; @blur: 10px; @spread: 0; @rgb: rgba(0,0,0,1)) {
+    -webkit-box-shadow: @arguments;
+    box-shadow: @arguments;
+}
+
 .font(@family: 'Century Gothic', 'Sans Serif'; @size: 1rem; @bold: false;) {  
   @f: @family;
   @s: @size;
