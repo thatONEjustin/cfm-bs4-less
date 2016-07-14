@@ -59,7 +59,7 @@
 }
 
 
-.box-shadow(@horz: 0; @vert: 0; @blur: 10px; @spread: 0; @rgb: rgba(0,0,0,1)) {
+.box-shadow(@horz: 0; @vert: 0; @blur: 10px; @spread: 0; @rgb: rgba(0,0,0,1)) when(iscolor(@rgb)) {
     -webkit-box-shadow: @arguments;
     box-shadow: @arguments;
 }
