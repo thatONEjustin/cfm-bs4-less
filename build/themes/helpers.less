@@ -58,6 +58,11 @@
     transform: scale(@w, @h);
 }
 
+.border-radius (@radius: 5px) {
+	-webkit-border-radius: @radius;
+	-moz-border-radius:    @radius;
+	border-radius:         @radius;
+}
 
 .box-shadow(@horz: 0; @vert: 0; @blur: 10px; @spread: 0; @rgb: rgba(0,0,0,1)) when(iscolor(@rgb)) {
     -webkit-box-shadow: @arguments;
